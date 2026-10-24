@@ -51,7 +51,7 @@
         .slide.active {
             opacity: 1 !important;
             visibility: visible !important;
-            pointer-events: all !important;
+            pointer-events: auto !important;
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -392,49 +392,51 @@
                 <p><a href="mailto:contact@elyndorinteractive.in">contact@elyndorinteractive.in</a></p>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 Elyndor Interactive. All Rights Reserved.</p>
+        <div class="copyright" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; padding: 1.5rem 0 2rem;">
+            <p style="margin: 0; color: #7a756d; font-size: 0.85rem;">&copy; 2026 Elyndor Interactive. All Rights Reserved.</p>
+            <div id="ea-portal-launcher" title="Elyndor Admin Portal">
+                <button id="ea-launch-btn" type="button" aria-label="Open Studio Admin Portal">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span>Admin</span>
+                    <span id="ea-launcher-status" class="ea-status-dot"></span>
+                </button>
+            </div>
         </div>
     </footer>
-
-    <!-- Admin Floating Launcher Button -->
-    <div id="ea-portal-launcher" title="Elyndor Admin Portal">
-        <button id="ea-launch-btn" type="button" aria-label="Open Studio Admin Portal">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span>Admin</span>
-            <span id="ea-launcher-status" class="ea-status-dot"></span>
-        </button>
-    </div>
 
     <!-- Admin Portal Styles -->
     <style id="ea-admin-styles">
         #ea-portal-launcher {
-            position: fixed !important;
-            bottom: 24px !important;
-            right: 24px !important;
-            z-index: 99990 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            position: static !important;
+            z-index: 10 !important;
         }
         #ea-launch-btn {
             display: inline-flex !important;
             align-items: center !important;
             gap: 8px !important;
-            background: linear-gradient(135deg, #181923 0%, #0d0e14 100%) !important;
+            background: #12131d !important;
             color: #d4af37 !important;
-            border: 1px solid rgba(212, 175, 55, 0.5) !important;
+            border: 1px solid rgba(212, 175, 55, 0.45) !important;
             border-radius: 9999px !important;
-            padding: 10px 18px !important;
-            font-size: 0.9rem !important;
+            padding: 7px 16px !important;
+            font-size: 0.84rem !important;
             font-weight: 600 !important;
             font-family: 'Outfit', sans-serif !important;
             cursor: pointer !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 20px rgba(212, 175, 55, 0.25) !important;
-            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+            transition: all 0.25s ease !important;
+            outline: none !important;
         }
         #ea-launch-btn:hover {
-            transform: translateY(-2px) !important;
+            background: rgba(212, 175, 55, 0.15) !important;
             border-color: #d4af37 !important;
             color: #ffffff !important;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.45) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3) !important;
         }
         .ea-status-dot {
             width: 8px !important;
@@ -444,7 +446,7 @@
             box-shadow: 0 0 8px #4CAF50 !important;
         }
 
-        /* Fullscreen Overlay Portal (Hidden by default, zero impact on website flow) */
+        /* Fullscreen Overlay Portal (Strict Zero-Leak Isolation) */
         #ea-admin-portal {
             position: fixed !important;
             top: 0 !important;
@@ -463,6 +465,33 @@
         }
         #ea-admin-portal.ea-open {
             display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+        }
+
+        #ea-admin-portal:not(.ea-open),
+        .ea-modal-backdrop.ea-hidden,
+        #ea-game-modal.ea-hidden,
+        .ea-visual-bar.ea-hidden,
+        #ea-visual-edit-bar.ea-hidden {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            max-width: 0 !important;
+            max-height: 0 !important;
+            overflow: hidden !important;
+            position: fixed !important;
+            top: -9999px !important;
+            left: -9999px !important;
+            z-index: -9999 !important;
         }
 
         .ea-container {
@@ -1783,25 +1812,41 @@
             // 1. Live Games
             const liveGrid = document.querySelector('#games .game-grid');
             if (liveGrid && siteData.liveGames) {
-                liveGrid.innerHTML = siteData.liveGames.map(game => `
-                    <div class="game-card" data-game-id="${escapeHtml(game.id)}">
-                        <a href="${escapeHtml(game.link)}" ${game.link && game.link !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}
-                            style="text-decoration: none; color: inherit; display: block;">
-                            <div class="game-image"
-                                style="background: url('${escapeHtml(game.img)}') center/contain no-repeat; display: flex; align-items: center; justify-content: center; background-color: #0c0611; position: relative;">
-                                <span class="game-badge ${escapeHtml(game.badgeClass || 'badge-playstore')}">${escapeHtml(game.badge)}</span>
-                            </div>
-                            <div class="game-info" style="padding: 1.5rem 0 0 0;">
-                                <h3>${escapeHtml(game.title)}</h3>
-                                <p>${escapeHtml(game.desc)}</p>
-                            </div>
-                            <div class="game-card-overlay">
-                                <div class="game-card-overlay-tag">${escapeHtml(game.overlayTag || 'Available Now')}</div>
-                                <div class="game-card-overlay-cta">${escapeHtml(game.overlayCta || 'Play Now')}</div>
-                            </div>
-                        </a>
-                    </div>
-                `).join('');
+                liveGrid.innerHTML = siteData.liveGames.map(game => {
+                    const hasLink = game.link && game.link !== '#' && game.link.trim() !== '';
+                    const isExternal = hasLink && /^https?:\/\//i.test(game.link);
+                    const innerHtml = `
+                        <div class="game-image"
+                            style="background: url('${escapeHtml(game.img)}') center/contain no-repeat; display: flex; align-items: center; justify-content: center; background-color: #0c0611; position: relative;">
+                            <span class="game-badge ${escapeHtml(game.badgeClass || 'badge-playstore')}">${escapeHtml(game.badge)}</span>
+                        </div>
+                        <div class="game-info" style="padding: 1.5rem 0 0 0;">
+                            <h3>${escapeHtml(game.title)}</h3>
+                            <p>${escapeHtml(game.desc)}</p>
+                        </div>
+                        <div class="game-card-overlay">
+                            <div class="game-card-overlay-tag">${escapeHtml(game.overlayTag || 'Available Now')}</div>
+                            <div class="game-card-overlay-cta">${escapeHtml(game.overlayCta || 'Play Now')}</div>
+                        </div>
+                    `;
+
+                    if (hasLink) {
+                        return `
+                        <div class="game-card" data-game-id="${escapeHtml(game.id)}">
+                            <a href="${escapeHtml(game.link)}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}
+                                style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+                                ${innerHtml}
+                            </a>
+                        </div>
+                        `;
+                    } else {
+                        return `
+                        <div class="game-card" data-game-id="${escapeHtml(game.id)}">
+                            ${innerHtml}
+                        </div>
+                        `;
+                    }
+                }).join('');
             }
 
             // 2. Upcoming Games
@@ -1810,25 +1855,39 @@
                 upcomingGrid.innerHTML = siteData.upcomingGames.map(game => {
                     const isFlagship = game.badgeClass === 'badge-upcoming';
                     const badgeStyle = isFlagship ? 'background: linear-gradient(135deg, #d4af37, #997819); color: #000; font-weight: 700;' : '';
-                    return `
-                    <div class="game-card" data-game-id="${escapeHtml(game.id)}">
-                        <a href="${escapeHtml(game.link)}" ${game.link && game.link !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}
-                            style="text-decoration: none; color: inherit; display: block;">
-                            <div class="game-image"
-                                style="background: url('${escapeHtml(game.img)}') center/cover no-repeat; display: flex; align-items: center; justify-content: center; background-color: #0b1525; position: relative;">
-                                <span class="game-badge ${escapeHtml(game.badgeClass || 'badge-dev')}" style="${badgeStyle}">${escapeHtml(game.badge)}</span>
-                            </div>
-                            <div class="game-info" style="padding: 1.5rem 0 0 0;">
-                                <h3>${escapeHtml(game.title)}</h3>
-                                <p>${escapeHtml(game.desc)}</p>
-                            </div>
-                            <div class="game-card-overlay">
-                                <div class="game-card-overlay-tag">${escapeHtml(game.overlayTag || 'In Development')}</div>
-                                <div class="game-card-overlay-cta">${escapeHtml(game.overlayCta || 'In Development')}</div>
-                            </div>
-                        </a>
-                    </div>
+                    const hasLink = game.link && game.link !== '#' && game.link.trim() !== '';
+                    const isExternal = hasLink && /^https?:\/\//i.test(game.link);
+                    const innerHtml = `
+                        <div class="game-image"
+                            style="background: url('${escapeHtml(game.img)}') center/cover no-repeat; display: flex; align-items: center; justify-content: center; background-color: #0b1525; position: relative;">
+                            <span class="game-badge ${escapeHtml(game.badgeClass || 'badge-dev')}" style="${badgeStyle}">${escapeHtml(game.badge)}</span>
+                        </div>
+                        <div class="game-info" style="padding: 1.5rem 0 0 0;">
+                            <h3>${escapeHtml(game.title)}</h3>
+                            <p>${escapeHtml(game.desc)}</p>
+                        </div>
+                        <div class="game-card-overlay">
+                            <div class="game-card-overlay-tag">${escapeHtml(game.overlayTag || 'In Development')}</div>
+                            <div class="game-card-overlay-cta">${escapeHtml(game.overlayCta || 'In Development')}</div>
+                        </div>
                     `;
+
+                    if (hasLink) {
+                        return `
+                        <div class="game-card" data-game-id="${escapeHtml(game.id)}">
+                            <a href="${escapeHtml(game.link)}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}
+                                style="text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%;">
+                                ${innerHtml}
+                            </a>
+                        </div>
+                        `;
+                    } else {
+                        return `
+                        <div class="game-card" data-game-id="${escapeHtml(game.id)}">
+                            ${innerHtml}
+                        </div>
+                        `;
+                    }
                 }).join('');
             }
 
@@ -1915,6 +1974,12 @@
 
         // Render admin dashboard item lists
         function renderAdminLists() {
+            // Update stats counter
+            const liveStat = document.getElementById('ea-stat-live-count');
+            if (liveStat) liveStat.textContent = (siteData.liveGames || []).length;
+            const upStat = document.getElementById('ea-stat-upcoming-count');
+            if (upStat) upStat.textContent = (siteData.upcomingGames || []).length;
+
             // Live games list
             const liveContainer = document.getElementById('ea-live-games-list');
             if (liveContainer) {
@@ -2220,7 +2285,10 @@
 
         // Initialize event listeners
         document.addEventListener('DOMContentLoaded', () => {
-            renderLivePage();
+            // Only apply dynamically if the admin has saved custom edits in localStorage
+            if (localStorage.getItem(STORAGE_KEY)) {
+                renderLivePage();
+            }
 
             // Trigger to open portal
             const launchBtn = document.getElementById('ea-launch-btn');
@@ -2229,6 +2297,22 @@
             // Close portal button
             const closePortalBtn = document.getElementById('ea-close-portal-btn');
             if (closePortalBtn) closePortalBtn.addEventListener('click', closeAdminPortal);
+
+            // Close portal on backdrop click outside container
+            const portal = document.getElementById('ea-admin-portal');
+            if (portal) {
+                portal.addEventListener('click', (e) => {
+                    if (e.target === portal) closeAdminPortal();
+                });
+            }
+
+            // Keyboard shortcut Ctrl + Shift + A to open Admin Portal from anywhere
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+                    e.preventDefault();
+                    openAdminPortal();
+                }
+            });
 
             // Login form
             const loginForm = document.getElementById('ea-login-form');
