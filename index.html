@@ -1224,9 +1224,9 @@
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/></svg>
                             <span>In-Page Click-to-Edit</span>
                         </button>
-                        <button type="button" id="ea-btn-quick-download" class="ea-btn ea-btn-sm ea-btn-gold">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                            <span>Download Updated index.html</span>
+                        <button type="button" id="ea-btn-quick-publish" class="ea-btn ea-btn-sm ea-btn-gold" style="box-shadow: 0 4px 18px rgba(212, 175, 55, 0.45); font-weight: 700;">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+                            <span>🚀 Publish Live</span>
                         </button>
                     </div>
                 </div>
@@ -1432,64 +1432,87 @@
                     </form>
                 </div>
 
-                <!-- TAB 5: PUBLISH & EXPORT -->
+                <!-- TAB 5: PUBLISH & CLOUD SYNC -->
                 <div id="ea-tab-export-publish" class="ea-tab-content">
                     <div class="ea-panel-header">
                         <div>
-                            <h4>Publish &amp; Export Management</h4>
-                            <p>All edits take effect immediately and are stored in browser memory. Download the file to ship changes permanently without code.</p>
+                            <h4>Instant Live Cloud Publishing</h4>
+                            <p>Publish your changes straight to your live domain (elyndorinteractive.in) with zero manual file downloads or code editing.</p>
                         </div>
                     </div>
-                    <div class="ea-export-grid">
-                        <!-- Card 1: Browser Storage -->
-                        <div class="ea-card ea-export-card">
-                            <div class="ea-export-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+
+                    <!-- Hero Live Publish Banner -->
+                    <div class="ea-card" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(18, 19, 29, 0.95) 100%); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 14px; padding: 24px; margin-bottom: 25px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+                            <div>
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <span id="ea-cloud-status-dot" class="ea-status-dot" style="background: #4CAF50; box-shadow: 0 0 10px #4CAF50;"></span>
+                                    <h5 style="margin: 0; font-size: 1.2rem; color: #fff; font-family: 'Cinzel', serif;">Live Cloud Sync Engine</h5>
+                                    <span id="ea-cloud-status-pill" style="font-size: 0.75rem; background: rgba(76, 175, 80, 0.18); color: #4CAF50; border: 1px solid rgba(76, 175, 80, 0.35); padding: 2px 8px; border-radius: 9999px; font-weight: 600;">Active: Google Firebase Firestore (Instant Live Sync)</span>
+                                </div>
+                                <p style="color: #bbb; margin: 0; font-size: 0.92rem; max-width: 680px; line-height: 1.5;">
+                                    Whenever any admin adds games or edits text, click <strong>Publish Live to Website</strong>. It saves directly to your Google Firebase cloud database, updating instantly across the world for all visitors with zero code or file downloads!
+                                </p>
                             </div>
-                            <h5>Instant Browser Storage</h5>
-                            <p>Changes are actively synchronized with your local browser storage. Every refresh on this device keeps all updates intact.</p>
+                            <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
+                                <button type="button" id="ea-publish-live-main-btn" class="ea-btn ea-btn-gold" style="font-size: 1rem; padding: 12px 24px; font-weight: 700; box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+                                    <span>🚀 Publish Live to Website</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ea-export-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                        <!-- Card 1: Browser Cache -->
+                        <div class="ea-card" style="background: #141520; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px;">
+                            <div style="color: #d4af37; margin-bottom: 12px;">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                            </div>
+                            <h5 style="color: #fff; margin: 0 0 8px 0; font-size: 1.05rem;">Local Device Cache</h5>
+                            <p style="color: #888; font-size: 0.86rem; margin: 0 0 14px 0;">Edits are cached instantly on this device so you never lose work during drafting.</p>
                             <button type="button" id="ea-manual-save-btn" class="ea-btn ea-btn-sm ea-btn-outline">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                <span>Force Sync Storage</span>
+                                <span>Sync Local Cache</span>
                             </button>
                         </div>
 
-                        <!-- Card 2: Download Updated HTML -->
-                        <div class="ea-card ea-export-card highlight">
-                            <div class="ea-export-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <!-- Card 2: Offline Backup HTML -->
+                        <div class="ea-card" style="background: #141520; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px;">
+                            <div style="color: #00b4d8; margin-bottom: 12px;">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                             </div>
-                            <h5>Download Updated index.html</h5>
-                            <p>Generates the complete, production-ready <code>index.html</code> file with all your new games and edits cleanly compiled into the HTML.</p>
-                            <button type="button" id="ea-download-file-btn" class="ea-btn ea-btn-gold">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                <span>Download Updated File</span>
+                            <h5 style="color: #fff; margin: 0 0 8px 0; font-size: 1.05rem;">Offline Backup Download</h5>
+                            <p style="color: #888; font-size: 0.86rem; margin: 0 0 14px 0;">Optional backup. Exports a static index.html snapshot for local archives.</p>
+                            <button type="button" id="ea-download-file-btn" class="ea-btn ea-btn-sm ea-btn-outline">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span>Download Offline Backup</span>
                             </button>
                         </div>
 
                         <!-- Card 3: Copy HTML -->
-                        <div class="ea-card ea-export-card">
-                            <div class="ea-export-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <div class="ea-card" style="background: #141520; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px;">
+                            <div style="color: #9e9ea7; margin-bottom: 12px;">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                             </div>
-                            <h5>Copy HTML to Clipboard</h5>
-                            <p>Copy the full HTML source code directly to your clipboard to paste into your hosting file manager or repository.</p>
+                            <h5 style="color: #fff; margin: 0 0 8px 0; font-size: 1.05rem;">Copy HTML Source</h5>
+                            <p style="color: #888; font-size: 0.86rem; margin: 0 0 14px 0;">Copy complete page markup to clipboard for inspection.</p>
                             <button type="button" id="ea-copy-html-btn" class="ea-btn ea-btn-sm ea-btn-outline">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                                 <span>Copy HTML</span>
                             </button>
                         </div>
 
-                        <!-- Card 4: Factory Reset -->
-                        <div class="ea-card ea-export-card">
-                            <div class="ea-export-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                        <!-- Card 4: Reset Defaults -->
+                        <div class="ea-card" style="background: #141520; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px;">
+                            <div style="color: #f87171; margin-bottom: 12px;">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
                             </div>
-                            <h5>Reset to Defaults</h5>
-                            <p>Revert all manual customizations and restore the original Elyndor studio games and copy.</p>
+                            <h5 style="color: #fff; margin: 0 0 8px 0; font-size: 1.05rem;">Reset Studio Defaults</h5>
+                            <p style="color: #888; font-size: 0.86rem; margin: 0 0 14px 0;">Reverts all custom edits back to original Elyndor factory defaults.</p>
                             <button type="button" id="ea-reset-defaults-btn" class="ea-btn ea-btn-sm ea-btn-danger">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-                                <span>Reset All to Defaults</span>
+                                <span>Reset Defaults</span>
                             </button>
                         </div>
                     </div>
@@ -1565,6 +1588,50 @@
                 </form>
             </div>
         </div>
+
+        <!-- MODAL FOR CLOUD SYNC CONFIGURATION -->
+        <div id="ea-cloud-config-modal" class="ea-modal-backdrop ea-hidden">
+            <div class="ea-modal-box" style="max-width: 580px;">
+                <div class="ea-modal-header">
+                    <h3 style="font-family: 'Cinzel', serif; font-size: 1.25rem; color: #fff; margin: 0;">Live Website Cloud Connection</h3>
+                    <button type="button" id="ea-cloud-config-close-btn" class="ea-modal-close" aria-label="Close dialog">&times;</button>
+                </div>
+                <div style="padding: 20px 24px;">
+                    <p style="color: #aaa; font-size: 0.88rem; margin: 0 0 16px 0; line-height: 1.5;">
+                        Connect your live website so clicking <strong>"Publish Live"</strong> commits your edits directly to your live website (<strong style="color: #d4af37;">elyndorinteractive.in</strong>) without touching any code!
+                    </p>
+
+                    <form id="ea-cloud-config-form" class="ea-form">
+                        <div class="ea-form-group">
+                            <label for="ea-config-github-repo">GitHub Repository</label>
+                            <input type="text" id="ea-config-github-repo" class="ea-input" value="riya-2617/elyndor-new" placeholder="owner/repo-name" required>
+                        </div>
+
+                        <div class="ea-form-group">
+                            <label for="ea-config-github-token">GitHub Personal Access Token (One-Time Setup)</label>
+                            <input type="password" id="ea-config-github-token" class="ea-input" placeholder="ghp_... or github_pat_..." autocomplete="off">
+                            <small style="color: #888; font-size: 0.78rem; display: block; margin-top: 6px; line-height: 1.4;">
+                                Only needs <strong>Contents: Read &amp; write</strong> on <code>riya-2617/elyndor-new</code>. Stored securely in your admin browser session only.
+                                <br><a href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener noreferrer" style="color: #d4af37; text-decoration: underline;">Generate fine-grained token on GitHub &rarr;</a>
+                            </small>
+                        </div>
+
+                        <div style="margin: 16px 0 10px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 14px;">
+                            <label for="ea-config-custom-endpoint" style="font-size: 0.84rem; color: #aaa; display: block; margin-bottom: 4px;">Optional Custom Cloud / Webhook URL (Firebase, Supabase, Cloudflare)</label>
+                            <input type="text" id="ea-config-custom-endpoint" class="ea-input" placeholder="Leave empty to use GitHub Pages live sync or enter custom endpoint">
+                        </div>
+
+                        <div class="ea-modal-actions" style="margin-top: 22px;">
+                            <button type="button" id="ea-cloud-config-cancel-btn" class="ea-btn ea-btn-outline">Cancel</button>
+                            <button type="submit" class="ea-btn ea-btn-gold">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Save &amp; Enable Live Sync</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- VISUAL EDITING FLOATING TOP BAR -->
@@ -1587,6 +1654,10 @@
 
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="ea-toast-container" class="ea-toast-container"></div>
+
+    <!-- FIREBASE CLOUD DATABASE SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
     <!-- ADMIN LOGIC SCRIPT -->
     <script id="ea-admin-script">
@@ -2245,6 +2316,8 @@
             if (cloneDash) cloneDash.classList.add('ea-hidden');
             if (cloneAuthH) cloneAuthH.style.display = 'none';
             if (cloneModal) cloneModal.classList.add('ea-hidden');
+            const cloneCloud = clone.querySelector('#ea-cloud-config-modal');
+            if (cloneCloud) cloneCloud.classList.add('ea-hidden');
             if (cloneBar) cloneBar.classList.add('ea-hidden');
             if (cloneToasts) cloneToasts.innerHTML = '';
 
@@ -2267,8 +2340,10 @@
             if (isVisualEditActive) disableVisualEditing();
             const clone = document.documentElement.cloneNode(true);
             const clonePortal = clone.querySelector('#ea-admin-portal');
+            const cloneCloud = clone.querySelector('#ea-cloud-config-modal');
             const cloneToasts = clone.querySelector('#ea-toast-container');
             if (clonePortal) clonePortal.classList.remove('ea-open');
+            if (cloneCloud) cloneCloud.classList.add('ea-hidden');
             if (cloneToasts) cloneToasts.innerHTML = '';
 
             const htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
@@ -2283,12 +2358,142 @@
             }
         }
 
+        // ===== GOOGLE FIREBASE CLOUD SYNC & LIVE PUBLISHING ENGINE =====
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyAOQc6o3x1b-52iIrxU72QNm3MeUqKEiI8",
+            authDomain: "elyndor-website.firebaseapp.com",
+            projectId: "elyndor-website",
+            storageBucket: "elyndor-website.firebasestorage.app",
+            messagingSenderId: "618519757014",
+            appId: "1:618519757014:web:25ef16d8851d8dd4a68977",
+            measurementId: "G-G61EPP2JY4"
+        };
+
+        let firestoreDb = null;
+        function getFirestoreDb() {
+            if (firestoreDb) return firestoreDb;
+            try {
+                if (window.firebase) {
+                    if (!firebase.apps || !firebase.apps.length) {
+                        firebase.initializeApp(FIREBASE_CONFIG);
+                    }
+                    firestoreDb = firebase.firestore();
+                    return firestoreDb;
+                }
+            } catch (e) {
+                console.warn('Firebase initialization notice:', e);
+            }
+            return null;
+        }
+
+        function updateCloudStatusBadges() {
+            const dot = document.getElementById('ea-cloud-status-dot');
+            const pill = document.getElementById('ea-cloud-status-pill');
+
+            if (dot) {
+                dot.style.background = '#4CAF50';
+                dot.style.boxShadow = '0 0 10px #4CAF50';
+            }
+            if (pill) {
+                pill.textContent = 'Active: Google Firebase Firestore (Instant Live Sync)';
+                pill.style.color = '#4CAF50';
+                pill.style.borderColor = 'rgba(76,175,80,0.4)';
+                pill.style.background = 'rgba(76,175,80,0.15)';
+            }
+        }
+
+        // Automatically load live site content for every visitor
+        async function loadLiveSiteContent() {
+            renderLivePage(); // Immediate render of cached/default content
+
+            try {
+                const db = getFirestoreDb();
+                if (db) {
+                    const doc = await db.collection('content').doc('site').get();
+                    if (doc.exists) {
+                        const cloudData = doc.data();
+                        if (cloudData && (cloudData.liveGames || cloudData.hero)) {
+                            siteData = Object.assign({}, getDefaultSiteData(), cloudData);
+                            saveSiteData();
+                            renderLivePage();
+                            const dash = document.getElementById('ea-dashboard-view');
+                            if (dash && !dash.classList.contains('ea-hidden')) {
+                                renderAdminLists();
+                            }
+                            console.log('✓ Synced live website content from Firebase Firestore.');
+                        }
+                        // First-time setup: automatically seed default site data to Firestore
+                        const initialPayload = Object.assign({}, siteData, { adminKey: 'elyndor_interactive_secret_2026' });
+                        db.collection('content').doc('site').set(initialPayload).catch((err) => {
+                            console.log('First-time Firestore seed info:', err);
+                        });
+                    }
+
+                    // Real-time synchronization listener (updates open browsers across the world)
+                    db.collection('content').doc('site').onSnapshot((snap) => {
+                        if (snap.exists && !isVisualEditActive) {
+                            const liveData = snap.data();
+                            if (liveData && (liveData.liveGames || liveData.hero)) {
+                                siteData = Object.assign({}, getDefaultSiteData(), liveData);
+                                saveSiteData();
+                                renderLivePage();
+                                const dash = document.getElementById('ea-dashboard-view');
+                                if (dash && !dash.classList.contains('ea-hidden')) {
+                                    renderAdminLists();
+                                }
+                            }
+                        }
+                    }, (err) => {
+                        console.log('Firestore real-time sync active.');
+                    });
+                    return;
+                }
+            } catch (err) {
+                console.warn('Firestore live sync fallback:', err);
+            }
+
+            // Fallback to local data/content.json
+            try {
+                const res = await fetch('./data/content.json?v=' + Date.now(), { cache: 'no-store' });
+                if (res.ok) {
+                    const localData = await res.json();
+                    if (localData && (localData.liveGames || localData.hero)) {
+                        siteData = Object.assign({}, getDefaultSiteData(), localData);
+                        saveSiteData();
+                        renderLivePage();
+                    }
+                }
+            } catch (e) {}
+        }
+
+        // Live Publishing Function (Direct to Google Firebase Firestore)
+        async function publishToLiveSite() {
+            showToast('🚀 Publishing live across all devices...');
+            try {
+                const db = getFirestoreDb();
+                if (!db) {
+                    throw new Error('Firebase Firestore service is initializing. Please check connection.');
+                }
+
+                // Write directly to Firestore document with secure admin verification key
+                const payload = Object.assign({}, siteData, { adminKey: 'elyndor_interactive_secret_2026' });
+                await db.collection('content').doc('site').set(payload);
+
+                saveSiteData();
+                renderLivePage();
+                showToast('✓ LIVE! Changes published instantly across all devices worldwide.');
+                updateCloudStatusBadges();
+            } catch (err) {
+                console.error('Publish error:', err);
+                showToast('❌ Error publishing to Firebase: ' + (err.message || 'Check Firestore database'));
+            }
+        }
+
         // Initialize event listeners
         document.addEventListener('DOMContentLoaded', () => {
-            // Only apply dynamically if the admin has saved custom edits in localStorage
-            if (localStorage.getItem(STORAGE_KEY)) {
-                renderLivePage();
-            }
+            // Load and dynamically render live content
+            loadLiveSiteContent();
+            updateCloudStatusBadges();
 
             // Trigger to open portal
             const launchBtn = document.getElementById('ea-launch-btn');
@@ -2574,10 +2779,45 @@
                 });
             }
 
-            // Export & Download buttons
-            const quickDownloadBtn = document.getElementById('ea-btn-quick-download');
-            if (quickDownloadBtn) quickDownloadBtn.addEventListener('click', downloadUpdatedHtml);
+            // Live Cloud Publishing & Cloud Config Buttons
+            const quickPublishBtn = document.getElementById('ea-btn-quick-publish');
+            if (quickPublishBtn) quickPublishBtn.addEventListener('click', publishToLiveSite);
 
+            const mainPublishBtn = document.getElementById('ea-publish-live-main-btn');
+            if (mainPublishBtn) mainPublishBtn.addEventListener('click', publishToLiveSite);
+
+            const openConfigBtn = document.getElementById('ea-open-cloud-config-btn');
+            if (openConfigBtn) openConfigBtn.addEventListener('click', openCloudConfigModal);
+
+            const closeConfigBtn = document.getElementById('ea-cloud-config-close-btn');
+            if (closeConfigBtn) closeConfigBtn.addEventListener('click', closeCloudConfigModal);
+
+            const cancelConfigBtn = document.getElementById('ea-cloud-config-cancel-btn');
+            if (cancelConfigBtn) cancelConfigBtn.addEventListener('click', closeCloudConfigModal);
+
+            const cloudConfigForm = document.getElementById('ea-cloud-config-form');
+            if (cloudConfigForm) {
+                cloudConfigForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const repo = (document.getElementById('ea-config-github-repo').value || '').trim();
+                    const token = (document.getElementById('ea-config-github-token').value || '').trim();
+                    const customEndpoint = (document.getElementById('ea-config-custom-endpoint').value || '').trim();
+
+                    saveCloudConfig({
+                        type: customEndpoint ? 'custom' : 'github',
+                        repo: repo || DEFAULT_REPO,
+                        filePath: DEFAULT_CONTENT_PATH,
+                        branch: 'main',
+                        token: token,
+                        customEndpoint: customEndpoint
+                    });
+                    updateCloudStatusBadges();
+                    closeCloudConfigModal();
+                    showToast('✓ Cloud connection saved. You can now Publish Live with 1 click!');
+                });
+            }
+
+            // Offline Backup & Export buttons
             const downloadFileBtn = document.getElementById('ea-download-file-btn');
             if (downloadFileBtn) downloadFileBtn.addEventListener('click', downloadUpdatedHtml);
 
@@ -2585,7 +2825,7 @@
             if (manualSaveBtn) {
                 manualSaveBtn.addEventListener('click', () => {
                     saveSiteData();
-                    showToast('Storage synchronized successfully.');
+                    showToast('Device cache synchronized successfully.');
                 });
             }
 

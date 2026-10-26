@@ -1,0 +1,139 @@
+{
+  "liveGames": [
+    {
+      "id": "live-1",
+      "title": "Spook-A-Chess",
+      "badge": "Play Store",
+      "badgeClass": "badge-playstore",
+      "desc": "A dark fantasy tactical chess battler blending classic strategy with arcane spellcasting, gothic isometric battlegrounds, and daily challenges.",
+      "link": "https://play.google.com/store/apps/details?id=com.spookachess.game",
+      "img": "assets/spook_a_chess.png",
+      "overlayTag": "Available on Google Play",
+      "overlayCta": "Play Now"
+    },
+    {
+      "id": "live-2",
+      "title": "Run Mania",
+      "badge": "Play Store",
+      "badgeClass": "badge-playstore",
+      "desc": "An exhilarating endless runner! Jump, survive, and repeat across challenging obstacles in this high-energy arcade adventure.",
+      "link": "https://play.google.com/store/apps/details?id=com.elyndorinteractive.runmania&pcampaignid=web_share",
+      "img": "assets/run_mania.png",
+      "overlayTag": "Available on Google Play",
+      "overlayCta": "Play Now"
+    },
+    {
+      "id": "live-3",
+      "title": "Carmine Tangles",
+      "badge": "itch.io",
+      "badgeClass": "badge-itch",
+      "desc": "A chilling maze where reality is unstable. Escape the desolate, mirror-walled labyrinth before time runs out.",
+      "link": "https://monish39.itch.io/carmine-tangles",
+      "img": "assets/carmine_tangles.png",
+      "overlayTag": "Available on itch.io",
+      "overlayCta": "Play Now"
+    },
+    {
+      "id": "live-4",
+      "title": "Drive Me Home",
+      "badge": "itch.io",
+      "badgeClass": "badge-itch",
+      "desc": "Drop your drunk friend home in just two minutes, but you don't know the address! Navigate unpredictable streets and chaos.",
+      "link": "https://monish39.itch.io/drive-me-home",
+      "img": "assets/drive_me_home.png",
+      "overlayTag": "Available on itch.io",
+      "overlayCta": "Play Now"
+    },
+    {
+      "id": "live-5",
+      "title": "Neo Mania",
+      "badge": "itch.io",
+      "badgeClass": "badge-itch",
+      "desc": "A thrilling precision platformer. Jump, dash, and navigate through neon-lit obstacles in this intense arcade challenge.",
+      "link": "https://monish39.itch.io/neo-mania",
+      "img": "assets/neo_mania.png",
+      "overlayTag": "Available on itch.io",
+      "overlayCta": "Play Now"
+    }
+  ],
+  "upcomingGames": [
+    {
+      "id": "up-1",
+      "title": "Turning Tides: Broken Rules",
+      "badge": "Pre-Register",
+      "badgeClass": "badge-upcoming",
+      "desc": "A 2.5D tabletop puzzle adventure where every step rewires reality! Outsmart the board and pre-register now on Google Play.",
+      "link": "https://play.google.com/store/apps/details?id=com.turningtides.plottwist&pcampaignid=web_share",
+      "img": "assets/turning_tides_1.jpg",
+      "overlayTag": "Google Play Pre-Registration",
+      "overlayCta": "Pre-Register Now"
+    },
+    {
+      "id": "up-2",
+      "title": "Can you escape my brain?",
+      "badge": "In Development",
+      "badgeClass": "badge-dev",
+      "desc": "A surreal psychological puzzle adventure navigating the labyrinthine corridors and hidden mysteries of the human subconscious.",
+      "link": "#",
+      "img": "assets/escape_my_brain.png",
+      "overlayTag": "Psychological Puzzle",
+      "overlayCta": "In Development"
+    },
+    {
+      "id": "up-3",
+      "title": "Project Origin",
+      "badge": "Flagship",
+      "badgeClass": "badge-upcoming",
+      "desc": "A narrative-driven atmospheric action-adventure game set in Modern India. Experience the protagonist's journey through grief and vengeance.",
+      "link": "originals.html",
+      "img": "assets/turning_tides_bg.jpg",
+      "overlayTag": "Flagship Title",
+      "overlayCta": "View Details"
+    },
+    {
+      "id": "up-4",
+      "title": "Project Homies",
+      "badge": "In Development",
+      "badgeClass": "badge-dev",
+      "desc": "An upcoming multiplayer social adventure exploring camaraderie, cityscapes, street culture, and shared journeys.",
+      "link": "#",
+      "img": "assets/project_homies.png",
+      "overlayTag": "Multiplayer Social Adventure",
+      "overlayCta": "In Development"
+    }
+  ],
+  "hero": {
+    "slide1": {
+      "label": "Live on Google Play",
+      "title": "Spook-A-Chess",
+      "subtitle": "Dark Fantasy Tactical Chess",
+      "desc": "A dark fantasy tactical chess battler blending classic strategy with arcane spellcasting, gothic isometric battlegrounds, and daily challenges. Play free now on Android!",
+      "btnText": "Play on Google Play",
+      "btnLink": "https://play.google.com/store/apps/details?id=com.spookachess.game"
+    },
+    "slide2": {
+      "label": "Pre-Registration Live",
+      "title": "Turning Tides",
+      "subtitle": "Broken Rules • 2.5D Tabletop Puzzle",
+      "desc": "When the board breaks its own rules, will you outsmart the twist? Guide a plucky hooded pawn across an ancient tabletop diorama where physics and reality rewire with every step. Pre-register now on Google Play!",
+      "btnText": "Pre-Register on Google Play",
+      "btnLink": "https://play.google.com/store/apps/details?id=com.turningtides.plottwist&pcampaignid=web_share"
+    }
+  },
+  "about": {
+    "heading": "Who We Are",
+    "text": "We're a game studio based in Nashik, India. We make games we'd want to play — from tactical chess battlers to GPS-powered street games. Small team, real ambition, shipping titles across Play Store and itch.io."
+  },
+  "contact": {
+    "heading": "Connect With Us",
+    "desc": "Got a project, a press inquiry, or just want to say hey — we'd love to hear from you.",
+    "btnText": "Get in Touch",
+    "email": "contact@elyndorinteractive.in"
+  },
+  "footer": {
+    "tagline": "An Indian game studio.",
+    "location": "Nashik, Maharashtra, India",
+    "email": "contact@elyndorinteractive.in",
+    "copyright": "© 2026 Elyndor Interactive. All Rights Reserved."
+  }
+}
