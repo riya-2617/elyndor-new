@@ -477,6 +477,7 @@
         #ea-admin-portal:not(.ea-open),
         .ea-modal-backdrop.ea-hidden,
         #ea-game-modal.ea-hidden,
+        #ea-internship-modal.ea-hidden,
         .ea-visual-bar.ea-hidden,
         #ea-visual-edit-bar.ea-hidden {
             display: none !important;
@@ -1002,7 +1003,8 @@
             box-sizing: border-box !important;
         }
         .ea-modal-backdrop.ea-hidden,
-        #ea-game-modal.ea-hidden {
+        #ea-game-modal.ea-hidden,
+        #ea-internship-modal.ea-hidden {
             display: none !important;
             visibility: hidden !important;
             opacity: 0 !important;
@@ -1217,6 +1219,7 @@
                     <div class="ea-quick-stats">
                         <span class="ea-stat-pill">Live Games: <strong id="ea-stat-live-count">0</strong></span>
                         <span class="ea-stat-pill">Upcoming Games: <strong id="ea-stat-upcoming-count">0</strong></span>
+                        <span class="ea-stat-pill">Internships: <strong id="ea-stat-internships-count" style="color: #d4af37;">0</strong></span>
                         <span class="ea-stat-pill">Storage: <strong style="color: #4CAF50;">Synced</strong></span>
                     </div>
                     <div class="ea-quick-actions">
@@ -1240,6 +1243,10 @@
                     <button type="button" class="ea-tab" data-tab="upcoming-games">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
                         <span>Upcoming Games</span>
+                    </button>
+                    <button type="button" class="ea-tab" data-tab="careers-internships">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect x="2" y="6" width="20" height="14" rx="2"/></svg>
+                        <span>Careers &amp; Internships</span>
                     </button>
                     <button type="button" class="ea-tab" data-tab="hero-about">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1432,6 +1439,76 @@
                     </form>
                 </div>
 
+                <!-- TAB: CAREERS & INTERNSHIPS -->
+                <div id="ea-tab-careers-internships" class="ea-tab-content">
+                    <div class="ea-panel-header">
+                        <div>
+                            <h4>Careers &amp; Student Internships Management</h4>
+                            <p>Add, edit, reorder, or delete internship openings, and update the Careers page hero headlines.</p>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="careers.html" target="_blank" rel="noopener noreferrer" class="ea-btn ea-btn-sm ea-btn-outline" style="text-decoration: none;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                <span>Preview Careers Page</span>
+                            </a>
+                            <button type="button" id="ea-add-internship-btn" class="ea-btn ea-btn-gold">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                <span>Add New Internship Role</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Careers Hero & Application Copy Form -->
+                    <form id="ea-careers-copy-form" class="ea-form" style="margin-bottom: 24px;">
+                        <div class="ea-card ea-subcard">
+                            <h5>Careers Page Hero &amp; Application Details</h5>
+                            <div class="ea-form-grid">
+                                <div class="ea-form-group">
+                                    <label for="ea-careers-hero-badge">Hero Top Tag / Badge</label>
+                                    <input type="text" id="ea-careers-hero-badge" class="ea-input" value="✦ STUDENT &amp; FRESHER INTERNSHIPS">
+                                </div>
+                                <div class="ea-form-group">
+                                    <label for="ea-careers-hero-title">Main Headline</label>
+                                    <input type="text" id="ea-careers-hero-title" class="ea-input" value="Build The Future with Elyndor">
+                                </div>
+                            </div>
+                            <div class="ea-form-group">
+                                <label for="ea-careers-hero-desc">Hero Subtitle / Description</label>
+                                <textarea id="ea-careers-hero-desc" class="ea-textarea" rows="2">Hands-on mentorship, real commercial game credits, and direct production experience building indie titles and civic platforms. Explore our active internship programs.</textarea>
+                            </div>
+                            <div class="ea-form-grid" style="margin-top: 10px;">
+                                <div class="ea-form-group">
+                                    <label for="ea-careers-apply-heading">Apply Box Heading</label>
+                                    <input type="text" id="ea-careers-apply-heading" class="ea-input" value="How To Apply">
+                                </div>
+                                <div class="ea-form-group">
+                                    <label for="ea-careers-apply-email">Application Receiving Email</label>
+                                    <input type="email" id="ea-careers-apply-email" class="ea-input" value="contact@elyndorinteractive.in">
+                                </div>
+                            </div>
+                            <div class="ea-form-group">
+                                <label for="ea-careers-apply-desc">Apply Instructions Text</label>
+                                <textarea id="ea-careers-apply-desc" class="ea-textarea" rows="2">Send your resume, portfolio link (ArtStation, GitHub, itch.io, or Demo Reel), and a brief note about why you want to build with Elyndor Interactive to:</textarea>
+                            </div>
+                            <div style="text-align: right; margin-top: 10px;">
+                                <button type="submit" class="ea-btn ea-btn-sm ea-btn-gold">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <span>Save Careers Page Copy</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Active Internships List -->
+                    <div class="ea-panel-header" style="margin-top: 25px; margin-bottom: 12px;">
+                        <div>
+                            <h4 style="font-size: 1.15rem;">Active Internship Positions (<span id="ea-internships-count-badge">0</span>)</h4>
+                            <p>Students and freshers apply directly from these listings. Drag or move cards to change display order.</p>
+                        </div>
+                    </div>
+                    <div id="ea-internships-list" class="ea-games-list"></div>
+                </div>
+
                 <!-- TAB 5: PUBLISH & CLOUD SYNC -->
                 <div id="ea-tab-export-publish" class="ea-tab-content">
                     <div class="ea-panel-header">
@@ -1583,6 +1660,66 @@
                         <button type="submit" class="ea-btn ea-btn-gold">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                             <span>Save Game Card</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- MODAL FOR ADDING / EDITING INTERNSHIP -->
+        <div id="ea-internship-modal" class="ea-modal-backdrop ea-hidden">
+            <div class="ea-modal-box" style="max-width: 620px;">
+                <div class="ea-modal-header">
+                    <h3 id="ea-internship-modal-title">Add / Edit Internship Opening</h3>
+                    <button type="button" id="ea-internship-modal-close-btn" class="ea-modal-close" aria-label="Close dialog">&times;</button>
+                </div>
+                <form id="ea-internship-modal-form" class="ea-form">
+                    <input type="hidden" id="ea-intern-edit-id" value="">
+
+                    <div class="ea-form-group">
+                        <label for="ea-intern-title">Role Title *</label>
+                        <input type="text" id="ea-intern-title" class="ea-input" placeholder="e.g. Game Development Intern (Unity / Unreal)" required>
+                    </div>
+
+                    <div class="ea-form-row">
+                        <div class="ea-form-group">
+                            <label for="ea-intern-category">Category / Discipline *</label>
+                            <input type="text" id="ea-intern-category" class="ea-input" placeholder="e.g. Internship • Game Engineering" required>
+                        </div>
+                        <div class="ea-form-group">
+                            <label for="ea-intern-is-pitch">Role Style / Type</label>
+                            <select id="ea-intern-is-pitch" class="ea-select">
+                                <option value="standard">Standard Role (Solid Border)</option>
+                                <option value="pitch">Open Pitch / Spontaneous (Dashed Border)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ea-form-group">
+                        <label for="ea-intern-desc">Role Description *</label>
+                        <textarea id="ea-intern-desc" class="ea-textarea" rows="3" placeholder="Explain what the intern will learn, build, or contribute..." required></textarea>
+                    </div>
+
+                    <div class="ea-form-group">
+                        <label for="ea-intern-tags">Skill Tags (comma separated) *</label>
+                        <input type="text" id="ea-intern-tags" class="ea-input" placeholder="e.g. Unity (C#), Unreal Engine, Gameplay Logic, Mobile Profiling" required>
+                    </div>
+
+                    <div class="ea-form-group">
+                        <label for="ea-intern-subject">Application Email Subject Line *</label>
+                        <input type="text" id="ea-intern-subject" class="ea-input" placeholder="e.g. Internship Application: Game Development Intern - Elyndor Interactive" required>
+                    </div>
+
+                    <div class="ea-form-group">
+                        <label for="ea-intern-body">Application Email Template Body (Optional)</label>
+                        <textarea id="ea-intern-body" class="ea-textarea" rows="4" placeholder="Template questionnaire shown in applicant's email..."></textarea>
+                    </div>
+
+                    <div class="ea-modal-actions">
+                        <button type="button" id="ea-internship-modal-cancel-btn" class="ea-btn ea-btn-outline">Cancel</button>
+                        <button type="submit" class="ea-btn ea-btn-gold">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Save Internship Opening</span>
                         </button>
                     </div>
                 </form>
@@ -1806,6 +1943,76 @@
                     location: 'Nashik, Maharashtra, India',
                     email: 'contact@elyndorinteractive.in',
                     copyright: '© 2026 Elyndor Interactive. All Rights Reserved.'
+                },
+                careers: {
+                    hero: {
+                        badge: '✦ STUDENT & FRESHER INTERNSHIPS',
+                        title: 'Build The Future with Elyndor',
+                        desc: 'Hands-on mentorship, real commercial game credits, and direct production experience building indie titles and civic platforms. Explore our active internship programs.',
+                        ctaText: 'Explore Internship Openings'
+                    },
+                    openings: [
+                        {
+                            id: 'intern-1',
+                            category: 'Internship • Game Engineering',
+                            title: 'Game Development Intern (Unity / Unreal)',
+                            desc: 'Work directly with our engineering leads on gameplay mechanics, character controllers, mobile optimization, and AI systems for commercial titles.',
+                            tags: ['Unity (C#)', 'Unreal Engine', 'Gameplay Logic', 'Mobile Profiling'],
+                            emailSubject: 'Internship Application: Game Development Intern - Elyndor Interactive',
+                            applyBody: 'Hi Elyndor Interactive Team,\n\nI would like to apply for the Game Development Internship at Elyndor Interactive.\n\n• Full Name: \n• College / Degree & Graduation Year: \n• Portfolio / GitHub / itch.io: \n• Primary Engine & Languages (Unity / C# / UE5): \n• Duration & Availability: \n\n[Please attach your Resume / CV]\n\nLooking forward to hearing from you!'
+                        },
+                        {
+                            id: 'intern-2',
+                            category: 'Internship • 3D Art & Animation',
+                            title: '3D Art & Modeling Intern',
+                            desc: 'Create stylized low-poly environments, mythological prop models, and character textures under the direct mentorship of our 3D art team.',
+                            tags: ['Blender / Maya', 'Substance 3D', 'Low-Poly Assets', 'Stylized Art'],
+                            emailSubject: 'Internship Application: 3D Art & Modeling Intern - Elyndor Interactive',
+                            applyBody: 'Hi Elyndor Interactive Team,\n\nI would like to apply for the 3D Art & Modeling Internship at Elyndor Interactive.\n\n• Full Name: \n• College / Degree & Graduation Year: \n• ArtStation / Portfolio Link: \n• Primary Software (Blender, Maya, Substance): \n• Duration & Availability: \n\n[Please attach your Resume / CV]\n\nLooking forward to hearing from you!'
+                        },
+                        {
+                            id: 'intern-3',
+                            category: 'Internship • 2D Art & UI',
+                            title: '2D Concept & UI/UX Intern',
+                            desc: 'Design intuitive game HUDs, concept character silhouettes, dark fantasy mood sketches, and store marketing art alongside our lead 2D artist.',
+                            tags: ['Photoshop', 'UI / UX', 'Concept Art', 'Figma'],
+                            emailSubject: 'Internship Application: 2D Concept & UI/UX Intern - Elyndor Interactive',
+                            applyBody: 'Hi Elyndor Interactive Team,\n\nI would like to apply for the 2D Concept & UI/UX Internship at Elyndor Interactive.\n\n• Full Name: \n• College / Degree & Graduation Year: \n• Portfolio / ArtStation / Behance: \n• Design / Art Tools: \n• Duration & Availability: \n\n[Please attach your Resume / CV]\n\nLooking forward to hearing from you!'
+                        },
+                        {
+                            id: 'intern-4',
+                            category: 'Internship • Mobile Apps',
+                            title: 'Mobile App Engineer Intern (STREETPLAY)',
+                            desc: 'Contribute to real-world geolocation mechanics, interactive territory maps, and responsive mobile interfaces for our flagship civic platform.',
+                            tags: ['Flutter / React Native', 'Geolocation APIs', 'Firebase', 'UI Integration'],
+                            emailSubject: 'Internship Application: Mobile App Engineer Intern - Elyndor Interactive',
+                            applyBody: 'Hi Elyndor Interactive Team,\n\nI would like to apply for the Mobile App Engineer Internship at Elyndor Interactive.\n\n• Full Name: \n• College / Degree & Graduation Year: \n• GitHub / App Demos: \n• Primary Tech Stack: \n• Duration & Availability: \n\n[Please attach your Resume / CV]\n\nLooking forward to hearing from you!'
+                        },
+                        {
+                            id: 'intern-5',
+                            category: 'Internship • Design & QA',
+                            title: 'Game Design & QA Playtesting Intern',
+                            desc: 'Design level layouts, test gameplay balance, draft design documents (GDDs), and lead playtesting sessions across our release pipeline.',
+                            tags: ['Level Design', 'Playtesting', 'Bug Reporting', 'Game Balance'],
+                            emailSubject: 'Internship Application: Game Design & QA Intern - Elyndor Interactive',
+                            applyBody: 'Hi Elyndor Interactive Team,\n\nI would like to apply for the Game Design & QA Playtesting Internship at Elyndor Interactive.\n\n• Full Name: \n• College / Degree & Graduation Year: \n• Portfolio / Articles / GDDs: \n• Favorite Games & Mechanics: \n• Duration & Availability: \n\n[Please attach your Resume / CV]\n\nLooking forward to hearing from you!'
+                        },
+                        {
+                            id: 'intern-6',
+                            category: 'Open Pitch • Any Discipline',
+                            title: 'Open Pitch Student Internship',
+                            desc: 'Bring your talent in audio engineering, motion graphics, video editing, community management, or writing to our indie game universe.',
+                            tags: ['Audio & SFX', 'Video Editing', 'Community', 'Storytelling'],
+                            emailSubject: 'Internship Pitch: Open Pitch Internship - Elyndor Interactive',
+                            applyBody: 'Hi Elyndor Interactive Team,\n\nI would like to pitch for an internship role at Elyndor Interactive.\n\n• Full Name: \n• College / Degree & Year: \n• Discipline / Focus Area: \n• Portfolio / Work Samples: \n• Why Elyndor Interactive?: \n• Duration & Availability: \n\n[Please attach your Resume / CV]\n\nLooking forward to hearing from you!',
+                            isOpenPitch: true
+                        }
+                    ],
+                    applyBox: {
+                        heading: 'How To Apply',
+                        desc: 'Send your resume, portfolio link (ArtStation, GitHub, itch.io, or Demo Reel), and a brief note about why you want to build with Elyndor Interactive to:',
+                        email: 'contact@elyndorinteractive.in'
+                    }
                 }
             };
         }
@@ -1819,7 +2026,9 @@
                 if (stored) {
                     const parsed = JSON.parse(stored);
                     const defaults = getDefaultSiteData();
-                    return Object.assign({}, defaults, parsed);
+                    const merged = Object.assign({}, defaults, parsed);
+                    if (!merged.careers) merged.careers = defaults.careers;
+                    return merged;
                 }
             } catch (e) {
                 console.warn('Could not load site data from storage:', e);
@@ -2165,6 +2374,72 @@
                 const fL = document.getElementById('ea-footer-location'); if (fL) fL.value = siteData.footer.location || '';
                 const fC = document.getElementById('ea-footer-copyright'); if (fC) fC.value = siteData.footer.copyright || '';
             }
+
+            // Careers & Internships Admin List
+            const internContainer = document.getElementById('ea-internships-list');
+            const internCountBadge = document.getElementById('ea-internships-count-badge');
+            const internStat = document.getElementById('ea-stat-internships-count');
+            const openings = (siteData.careers && siteData.careers.openings) ? siteData.careers.openings : [];
+
+            if (internStat) internStat.textContent = openings.length;
+            if (internCountBadge) internCountBadge.textContent = openings.length;
+
+            if (internContainer) {
+                if (openings.length === 0) {
+                    internContainer.innerHTML = '<div style="color: #888; padding: 20px; text-align: center;">No internship openings currently listed. Click "Add New Internship Role" above.</div>';
+                } else {
+                    internContainer.innerHTML = openings.map((role, index) => {
+                        const tags = Array.isArray(role.tags) ? role.tags : (role.tags ? role.tags.split(',').map(t => t.trim()) : []);
+                        return `
+                            <div class="ea-game-item" data-id="${escapeHtml(role.id)}" style="${role.isOpenPitch ? 'border-style: dashed; border-color: rgba(212, 175, 55, 0.45);' : ''}">
+                                <div class="ea-game-item-left">
+                                    <div style="width: 48px; height: 48px; border-radius: 8px; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3); display: flex; align-items: center; justify-content: center; color: #d4af37; font-weight: 700; font-size: 0.95rem; flex-shrink: 0;">
+                                        #${index + 1}
+                                    </div>
+                                    <div class="ea-game-details">
+                                        <h6>${escapeHtml(role.title)}</h6>
+                                        <div class="ea-game-meta">
+                                            <span class="ea-pill" style="background: rgba(212, 175, 55, 0.15); color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3);">${escapeHtml(role.category || 'Internship')}</span>
+                                            ${tags.map(t => `<span style="background: rgba(255,255,255,0.06); padding: 2px 7px; border-radius: 4px; font-size: 0.72rem; color: #bbb;">${escapeHtml(t)}</span>`).join(' ')}
+                                        </div>
+                                        <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: #777; max-width: 540px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(role.desc || '')}</p>
+                                    </div>
+                                </div>
+                                <div class="ea-game-actions">
+                                    <button type="button" class="ea-btn ea-btn-xs ea-btn-outline ea-btn-move-internship" data-index="${index}" data-dir="-1" title="Move Up" ${index === 0 ? 'disabled style="opacity:0.3;"' : ''}>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                                    </button>
+                                    <button type="button" class="ea-btn ea-btn-xs ea-btn-outline ea-btn-move-internship" data-index="${index}" data-dir="1" title="Move Down" ${index === openings.length - 1 ? 'disabled style="opacity:0.3;"' : ''}>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </button>
+                                    <button type="button" class="ea-btn ea-btn-xs ea-btn-outline ea-btn-edit-internship" data-id="${escapeHtml(role.id)}">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                                        <span>Edit</span>
+                                    </button>
+                                    <button type="button" class="ea-btn ea-btn-xs ea-btn-danger ea-btn-delete-internship" data-id="${escapeHtml(role.id)}">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                        <span>Delete</span>
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+
+            // Populate Careers Form Inputs
+            if (siteData.careers) {
+                if (siteData.careers.hero) {
+                    const chb = document.getElementById('ea-careers-hero-badge'); if (chb) chb.value = siteData.careers.hero.badge || '';
+                    const cht = document.getElementById('ea-careers-hero-title'); if (cht) cht.value = siteData.careers.hero.title || '';
+                    const chd = document.getElementById('ea-careers-hero-desc'); if (chd) chd.value = siteData.careers.hero.desc || '';
+                }
+                if (siteData.careers.applyBox) {
+                    const cah = document.getElementById('ea-careers-apply-heading'); if (cah) cah.value = siteData.careers.applyBox.heading || '';
+                    const cae = document.getElementById('ea-careers-apply-email'); if (cae) cae.value = siteData.careers.applyBox.email || '';
+                    const cad = document.getElementById('ea-careers-apply-desc'); if (cad) cad.value = siteData.careers.applyBox.desc || '';
+                }
+            }
         }
 
         // Authentication State
@@ -2228,6 +2503,46 @@
 
         function closeGameModal() {
             const modal = document.getElementById('ea-game-modal');
+            if (modal) modal.classList.add('ea-hidden');
+        }
+
+        function openInternshipModal(id) {
+            const modal = document.getElementById('ea-internship-modal');
+            const modalTitle = document.getElementById('ea-internship-modal-title');
+            const idInput = document.getElementById('ea-intern-edit-id');
+            const form = document.getElementById('ea-internship-modal-form');
+
+            if (!modal || !form) return;
+            form.reset();
+            idInput.value = id || '';
+
+            const openings = (siteData.careers && siteData.careers.openings) ? siteData.careers.openings : [];
+
+            if (id) {
+                modalTitle.textContent = 'Edit Internship Opening';
+                const role = openings.find(r => r.id === id);
+                if (role) {
+                    document.getElementById('ea-intern-title').value = role.title || '';
+                    document.getElementById('ea-intern-category').value = role.category || '';
+                    document.getElementById('ea-intern-is-pitch').value = role.isOpenPitch ? 'pitch' : 'standard';
+                    document.getElementById('ea-intern-desc').value = role.desc || '';
+                    document.getElementById('ea-intern-tags').value = Array.isArray(role.tags) ? role.tags.join(', ') : (role.tags || '');
+                    document.getElementById('ea-intern-subject').value = role.emailSubject || '';
+                    document.getElementById('ea-intern-body').value = role.applyBody || '';
+                }
+            } else {
+                modalTitle.textContent = 'Add New Internship Opening';
+                document.getElementById('ea-intern-category').value = 'Internship • Engineering';
+                document.getElementById('ea-intern-is-pitch').value = 'standard';
+                document.getElementById('ea-intern-subject').value = 'Internship Application - Elyndor Interactive';
+                document.getElementById('ea-intern-body').value = `Hi Elyndor Interactive Team,\n\nI would like to apply for the internship at Elyndor Interactive.\n\n• Full Name: \n• College / Degree & Year: \n• Portfolio / GitHub / Demo: \n• Duration & Availability: \n\n[Please attach your Resume / CV]\n\nLooking forward to hearing from you!`;
+            }
+
+            modal.classList.remove('ea-hidden');
+        }
+
+        function closeInternshipModal() {
+            const modal = document.getElementById('ea-internship-modal');
             if (modal) modal.classList.add('ea-hidden');
         }
 
@@ -2308,6 +2623,7 @@
             const cloneDash = clone.querySelector('#ea-dashboard-view');
             const cloneAuthH = clone.querySelector('#ea-auth-header-actions');
             const cloneModal = clone.querySelector('#ea-game-modal');
+            const cloneInternModal = clone.querySelector('#ea-internship-modal');
             const cloneBar = clone.querySelector('#ea-visual-edit-bar');
             const cloneToasts = clone.querySelector('#ea-toast-container');
 
@@ -2316,6 +2632,7 @@
             if (cloneDash) cloneDash.classList.add('ea-hidden');
             if (cloneAuthH) cloneAuthH.style.display = 'none';
             if (cloneModal) cloneModal.classList.add('ea-hidden');
+            if (cloneInternModal) cloneInternModal.classList.add('ea-hidden');
             const cloneCloud = clone.querySelector('#ea-cloud-config-modal');
             if (cloneCloud) cloneCloud.classList.add('ea-hidden');
             if (cloneBar) cloneBar.classList.add('ea-hidden');
@@ -2341,9 +2658,11 @@
             const clone = document.documentElement.cloneNode(true);
             const clonePortal = clone.querySelector('#ea-admin-portal');
             const cloneCloud = clone.querySelector('#ea-cloud-config-modal');
+            const cloneInternModal = clone.querySelector('#ea-internship-modal');
             const cloneToasts = clone.querySelector('#ea-toast-container');
             if (clonePortal) clonePortal.classList.remove('ea-open');
             if (cloneCloud) cloneCloud.classList.add('ea-hidden');
+            if (cloneInternModal) cloneInternModal.classList.add('ea-hidden');
             if (cloneToasts) cloneToasts.innerHTML = '';
 
             const htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
@@ -2412,8 +2731,9 @@
                     const doc = await db.collection('content').doc('site').get();
                     if (doc.exists) {
                         const cloudData = doc.data();
-                        if (cloudData && (cloudData.liveGames || cloudData.hero)) {
+                        if (cloudData && (cloudData.liveGames || cloudData.hero || cloudData.careers)) {
                             siteData = Object.assign({}, getDefaultSiteData(), cloudData);
+                            if (!siteData.careers) siteData.careers = getDefaultSiteData().careers;
                             saveSiteData();
                             renderLivePage();
                             const dash = document.getElementById('ea-dashboard-view');
@@ -2433,8 +2753,9 @@
                     db.collection('content').doc('site').onSnapshot((snap) => {
                         if (snap.exists && !isVisualEditActive) {
                             const liveData = snap.data();
-                            if (liveData && (liveData.liveGames || liveData.hero)) {
+                            if (liveData && (liveData.liveGames || liveData.hero || liveData.careers)) {
                                 siteData = Object.assign({}, getDefaultSiteData(), liveData);
+                                if (!siteData.careers) siteData.careers = getDefaultSiteData().careers;
                                 saveSiteData();
                                 renderLivePage();
                                 const dash = document.getElementById('ea-dashboard-view');
@@ -2457,8 +2778,9 @@
                 const res = await fetch('./data/content.json?v=' + Date.now(), { cache: 'no-store' });
                 if (res.ok) {
                     const localData = await res.json();
-                    if (localData && (localData.liveGames || localData.hero)) {
+                    if (localData && (localData.liveGames || localData.hero || localData.careers)) {
                         siteData = Object.assign({}, getDefaultSiteData(), localData);
+                        if (!siteData.careers) siteData.careers = getDefaultSiteData().careers;
                         saveSiteData();
                         renderLivePage();
                     }
@@ -2575,7 +2897,13 @@
                 addUpBtn.addEventListener('click', () => openGameModal('upcoming', null));
             }
 
-            // Close modal buttons
+            // Add internship role button
+            const addInternBtn = document.getElementById('ea-add-internship-btn');
+            if (addInternBtn) {
+                addInternBtn.addEventListener('click', () => openInternshipModal(null));
+            }
+
+            // Close game modal buttons
             const gameModal = document.getElementById('ea-game-modal');
             const closeBtn = document.getElementById('ea-modal-close-btn');
             if (closeBtn) closeBtn.addEventListener('click', closeGameModal);
@@ -2587,10 +2915,26 @@
                     if (e.target === gameModal) closeGameModal();
                 });
             }
+
+            // Close internship modal buttons
+            const internModal = document.getElementById('ea-internship-modal');
+            const closeInternBtn = document.getElementById('ea-internship-modal-close-btn');
+            if (closeInternBtn) closeInternBtn.addEventListener('click', closeInternshipModal);
+            const cancelInternBtn = document.getElementById('ea-internship-modal-cancel-btn');
+            if (cancelInternBtn) cancelInternBtn.addEventListener('click', closeInternshipModal);
+
+            if (internModal) {
+                internModal.addEventListener('click', (e) => {
+                    if (e.target === internModal) closeInternshipModal();
+                });
+            }
+
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     if (gameModal && !gameModal.classList.contains('ea-hidden')) {
                         closeGameModal();
+                    } else if (internModal && !internModal.classList.contains('ea-hidden')) {
+                        closeInternshipModal();
                     } else {
                         closeAdminPortal();
                     }
@@ -2652,9 +2996,60 @@
                 });
             }
 
+            // Modal save internship form
+            const internModalForm = document.getElementById('ea-internship-modal-form');
+            if (internModalForm) {
+                internModalForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!siteData.careers) siteData.careers = { openings: [] };
+                    if (!siteData.careers.openings) siteData.careers.openings = [];
+
+                    const editId = document.getElementById('ea-intern-edit-id').value;
+                    const title = document.getElementById('ea-intern-title').value.trim();
+                    const category = document.getElementById('ea-intern-category').value.trim();
+                    const isPitch = document.getElementById('ea-intern-is-pitch').value === 'pitch';
+                    const desc = document.getElementById('ea-intern-desc').value.trim();
+                    const rawTags = document.getElementById('ea-intern-tags').value.trim();
+                    const tags = rawTags.split(',').map(t => t.trim()).filter(Boolean);
+                    const emailSubject = document.getElementById('ea-intern-subject').value.trim();
+                    const applyBody = document.getElementById('ea-intern-body').value.trim();
+
+                    if (editId) {
+                        const existing = siteData.careers.openings.find(r => r.id === editId);
+                        if (existing) {
+                            existing.title = title;
+                            existing.category = category;
+                            existing.isOpenPitch = isPitch;
+                            existing.desc = desc;
+                            existing.tags = tags;
+                            existing.emailSubject = emailSubject;
+                            existing.applyBody = applyBody;
+                        }
+                        showToast(`Updated "${title}" internship.`);
+                    } else {
+                        const newId = 'intern-' + Date.now();
+                        siteData.careers.openings.push({
+                            id: newId,
+                            title,
+                            category,
+                            isOpenPitch: isPitch,
+                            desc,
+                            tags,
+                            emailSubject,
+                            applyBody
+                        });
+                        showToast(`Added "${title}" to internship openings.`);
+                    }
+
+                    saveSiteData();
+                    renderAdminLists();
+                    closeInternshipModal();
+                });
+            }
+
             // Edit / Delete / Move Game Delegation
             document.addEventListener('click', (e) => {
-                // Edit
+                // Edit Game
                 const editBtn = e.target.closest('.ea-btn-edit-game');
                 if (editBtn) {
                     const sec = editBtn.getAttribute('data-section');
@@ -2663,7 +3058,7 @@
                     return;
                 }
 
-                // Delete
+                // Delete Game
                 const delBtn = e.target.closest('.ea-btn-delete-game');
                 if (delBtn) {
                     const sec = delBtn.getAttribute('data-section');
@@ -2682,7 +3077,7 @@
                     return;
                 }
 
-                // Move up/down
+                // Move Game up/down
                 const moveBtn = e.target.closest('.ea-btn-move');
                 if (moveBtn) {
                     const sec = moveBtn.getAttribute('data-section');
@@ -2696,6 +3091,46 @@
                         list[targetIdx] = temp;
                         saveSiteData();
                         renderLivePage();
+                        renderAdminLists();
+                    }
+                    return;
+                }
+
+                // Edit Internship
+                const editInternBtn = e.target.closest('.ea-btn-edit-internship');
+                if (editInternBtn) {
+                    const id = editInternBtn.getAttribute('data-id');
+                    openInternshipModal(id);
+                    return;
+                }
+
+                // Delete Internship
+                const delInternBtn = e.target.closest('.ea-btn-delete-internship');
+                if (delInternBtn) {
+                    const id = delInternBtn.getAttribute('data-id');
+                    if (confirm('Are you sure you want to remove this internship opening?')) {
+                        if (siteData.careers && siteData.careers.openings) {
+                            siteData.careers.openings = siteData.careers.openings.filter(r => r.id !== id);
+                            saveSiteData();
+                            renderAdminLists();
+                            showToast('Internship opening removed.');
+                        }
+                    }
+                    return;
+                }
+
+                // Move Internship up/down
+                const moveInternBtn = e.target.closest('.ea-btn-move-internship');
+                if (moveInternBtn) {
+                    const idx = parseInt(moveInternBtn.getAttribute('data-index'), 10);
+                    const dir = parseInt(moveInternBtn.getAttribute('data-dir'), 10);
+                    const list = (siteData.careers && siteData.careers.openings) ? siteData.careers.openings : [];
+                    const targetIdx = idx + dir;
+                    if (targetIdx >= 0 && targetIdx < list.length) {
+                        const temp = list[idx];
+                        list[idx] = list[targetIdx];
+                        list[targetIdx] = temp;
+                        saveSiteData();
                         renderAdminLists();
                     }
                     return;
@@ -2756,6 +3191,28 @@
                     saveSiteData();
                     renderLivePage();
                     showToast('Contact and footer details saved.');
+                });
+            }
+
+            // Careers Hero & Application Copy Form
+            const careersCopyForm = document.getElementById('ea-careers-copy-form');
+            if (careersCopyForm) {
+                careersCopyForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!siteData.careers) siteData.careers = {};
+                    if (!siteData.careers.hero) siteData.careers.hero = {};
+                    if (!siteData.careers.applyBox) siteData.careers.applyBox = {};
+
+                    siteData.careers.hero.badge = document.getElementById('ea-careers-hero-badge').value.trim();
+                    siteData.careers.hero.title = document.getElementById('ea-careers-hero-title').value.trim();
+                    siteData.careers.hero.desc = document.getElementById('ea-careers-hero-desc').value.trim();
+
+                    siteData.careers.applyBox.heading = document.getElementById('ea-careers-apply-heading').value.trim();
+                    siteData.careers.applyBox.email = document.getElementById('ea-careers-apply-email').value.trim();
+                    siteData.careers.applyBox.desc = document.getElementById('ea-careers-apply-desc').value.trim();
+
+                    saveSiteData();
+                    showToast('Careers page hero and application details saved.');
                 });
             }
 
@@ -2845,6 +3302,24 @@
                     }
                 });
             }
+
+            // URL query param launcher (e.g., from careers.html footer link)
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const openParam = urlParams.get('openAdmin');
+                if (openParam) {
+                    openAdminPortal();
+                    if (openParam === 'careers' || openParam === 'internships') {
+                        const tabs = document.querySelectorAll('.ea-tab');
+                        tabs.forEach(t => t.classList.remove('active'));
+                        const careersTab = document.querySelector('.ea-tab[data-tab="careers-internships"]');
+                        if (careersTab) careersTab.classList.add('active');
+                        document.querySelectorAll('.ea-tab-content').forEach(c => c.classList.remove('active'));
+                        const careersContent = document.getElementById('ea-tab-careers-internships');
+                        if (careersContent) careersContent.classList.add('active');
+                    }
+                }
+            } catch (e) {}
         });
     })();
     </script>
